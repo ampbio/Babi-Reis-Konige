@@ -4,11 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Könige</title>
+<meta name="description" content="Conecte pessoas, transforme momentos em memórias!">
+<link rel="canonical" href="https://ampbio.github.io/Babi-Reis-Konige/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Könige">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://ampbio.github.io/Babi-Reis-Konige/">
+<meta property="og:title" content="Könige">
+<meta property="og:description" content="Conecte pessoas, transforme momentos em memórias!">
+<meta property="og:image" content="https://ampbio.github.io/Babi-Reis-Konige/assets/imagens/thumb.jpg">
+<meta property="og:image:alt" content="Könige">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Könige">
+<meta name="twitter:description" content="Conecte pessoas, transforme momentos em memórias!">
+<meta name="twitter:image" content="https://ampbio.github.io/Babi-Reis-Konige/assets/imagens/thumb.jpg">
 <link rel="icon" type="image/png" href="assets/imagens/logo.png">
 <link rel="apple-touch-icon" href="assets/imagens/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<script>window.rec={paused:false,q:[]};</script>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <style>
 :root{
   --wine:#A5040B; --wine-dark:#6E0207; --cream:#F3F1E9; --cream-2:#E9E5D8;
@@ -79,7 +95,6 @@ h1{ margin:0; font-size:40px; color:var(--wine); }
 /* SECTIONS */
 .label{ margin:40px 0 16px; font-size:26px; color:var(--wine); display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px; }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .label{ color:var(--pink); } }
-.label i{ font-size:14px; font-style:normal; letter-spacing:.02em; color:var(--muted); }
 .services{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
 .svc{ display:block; width:100%; perspective:900px; background:none; border:0; padding:0; height:130px; cursor:pointer; font:inherit; color:inherit; -webkit-tap-highlight-color:transparent; min-width:0; }
 .svc-in{ display:block; position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .55s cubic-bezier(.2,.8,.2,1); }
@@ -240,10 +255,141 @@ body{ padding-bottom:14px; }
 .tw-cur{ display:inline-block; width:2px; height:1em; margin-left:2px; background:var(--wine); vertical-align:-.14em; animation:twb 1s steps(1) infinite; }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tw-cur{ background:var(--pink); } }
 @keyframes twb{ 50%{ opacity:0; } }
+
+/* Alternador sol/lua (canto superior direito da moldura) */
+.theme-tg{ position:absolute; top:12px; right:30px; display:flex; align-items:center; gap:2px; padding:3px; border-radius:999px; background:rgba(243,241,233,.92); border:1px solid var(--line); box-shadow:0 2px 10px rgba(110,2,7,.12); color:var(--wine); pointer-events:auto; }
+.theme-tg button{ width:20px; height:20px; padding:0; border:0; border-radius:50%; background:transparent; color:inherit; display:grid; place-items:center; cursor:pointer; opacity:.5; -webkit-tap-highlight-color:transparent; }
+.theme-tg button[aria-pressed="true"]{ opacity:1; background:var(--wine); color:var(--cream); }
+.theme-tg button:focus-visible{ outline:2px solid var(--wine); outline-offset:1px; }
+.theme-tg svg{ width:13px; height:13px; display:block; }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .theme-tg{ color:var(--pink); background:rgba(43,5,7,.9); box-shadow:0 2px 12px rgba(0,0,0,.35); }
+  :root:not([data-theme="light"]) .theme-tg button[aria-pressed="true"]{ background:var(--pink); color:var(--wine-dark); }
+  :root:not([data-theme="light"]) .theme-tg button:focus-visible{ outline-color:var(--pink); }
+}
+
+/* Modo escuro forçado pelo alternador (espelha as regras do tema escuro do sistema) */
+
+  :root[data-theme="dark"]{ --bg:#2B0507; --text:#F3F1E9; --card:#3A080B; --muted:#d8b9b9; --line:rgba(243,241,233,.2); }
+
+ :root[data-theme="dark"] h1{ color:var(--pink); } 
+ :root[data-theme="dark"] .tagline b{ color:var(--pink); } 
+ :root[data-theme="dark"] .cta2{ color:var(--pink); border-color:var(--pink); } 
+ :root[data-theme="dark"] .about-close{ color:var(--pink); border-color:var(--pink); } 
+ :root[data-theme="dark"] .about-name, :root[data-theme="dark"] .about-text b{ color:var(--pink); } 
+ :root[data-theme="dark"] .label{ color:var(--pink); } 
+ :root[data-theme="dark"] .front{ border-color:var(--pink); } 
+ :root[data-theme="dark"] .ico{ --i-line:var(--pink); --i-fill:var(--wine); } 
+ :root[data-theme="dark"] .more{ color:var(--pink); border-color:var(--pink); } 
+ :root[data-theme="dark"] .socials a{ color:var(--pink); border-color:var(--pink); } 
+ :root[data-theme="dark"] .site-footer-line.dev a{ color:var(--pink); } 
+ :root[data-theme="dark"] .qtxt h3{ color:var(--pink); } 
+@media (hover:hover) and (pointer:fine){
+  :root[data-theme="dark"] .socials a:hover{ background:var(--pink); color:var(--wine-dark); box-shadow:3px 3px 0 var(--wine); }
+}
+ :root[data-theme="dark"] .socials a:focus-visible{ outline-color:var(--pink); } 
+@media (hover:hover) and (pointer:fine){
+  :root[data-theme="dark"] .more:hover{ background:var(--pink); color:var(--wine-dark); box-shadow:3px 3px 0 var(--wine); }
+}
+ :root[data-theme="dark"] .more:focus-visible{ outline-color:var(--pink); } 
+ :root[data-theme="dark"] .pcap{ color:var(--pink); } 
+
+  :root[data-theme="dark"] .fx-grain{ display:none; }
+  :root[data-theme="dark"] .fx-vig{ background:radial-gradient(ellipse 90% 70% at 50% 25%, transparent 40%, rgba(0,0,0,.45) 100%); }
+
+ :root[data-theme="dark"] .rec-bar{ color:var(--pink); background:rgba(43,5,7,.9); box-shadow:0 2px 12px rgba(0,0,0,.35); } 
+ :root[data-theme="dark"] .vf{ --c:var(--pink); } 
+ :root[data-theme="dark"] .cam-frame{ --c:var(--pink); } 
+ :root[data-theme="dark"] .marquee{ color:var(--pink); } 
+ :root[data-theme="dark"] .thumb{ border-color:var(--pink); } 
+ :root[data-theme="dark"] .marquee:focus-visible{ outline-color:var(--pink); } 
+ :root[data-theme="dark"] .tw-cur{ background:var(--pink); } 
+
+  :root[data-theme="dark"] .theme-tg{ color:var(--pink); background:rgba(43,5,7,.9); box-shadow:0 2px 12px rgba(0,0,0,.35); }
+  :root[data-theme="dark"] .theme-tg button[aria-pressed="true"]{ background:var(--pink); color:var(--wine-dark); }
+  :root[data-theme="dark"] .theme-tg button:focus-visible{ outline-color:var(--pink); }
+
+
+/* Borda na foto do "Me conheça" (mesma identidade dos vídeos e cards) */
+.about-photo{ border:1.5px solid var(--wine); box-sizing:border-box; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .about-photo{ border-color:var(--pink); } }
+:root[data-theme="dark"] .about-photo{ border-color:var(--pink); }
+
+/* Mesmo hover do botão de portfólio no "Me conheça aqui" */
+.cta2{ transition:transform .15s, box-shadow .15s, background .15s, color .15s; }
+.cta2:focus-visible{ outline:2px solid var(--wine); outline-offset:3px; }
+.cta2:active{ transform:scale(.98); }
+@media (hover:hover) and (pointer:fine){
+  .cta2:hover{ background:var(--wine); color:var(--cream); transform:translate(-1px,-1px); box-shadow:3px 3px 0 var(--pink); }
+}
+@media (hover:hover) and (pointer:fine) and (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .cta2:hover{ background:var(--pink); color:var(--wine-dark); box-shadow:3px 3px 0 var(--wine); }
+}
+@media (hover:hover) and (pointer:fine){
+  :root[data-theme="dark"] .cta2:hover{ background:var(--pink); color:var(--wine-dark); box-shadow:3px 3px 0 var(--wine); }
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .cta2:focus-visible{ outline-color:var(--pink); } }
+:root[data-theme="dark"] .cta2:focus-visible{ outline-color:var(--pink); }
+
+/* Transição suave ao trocar de tema (a classe só existe durante o fade) */
+:root.theme-anim *, :root.theme-anim *::before, :root.theme-anim *::after{ transition:background-color 1.2s ease, color 1.2s ease, border-color 1.2s ease, box-shadow 1.2s ease, fill 1.2s ease, stroke 1.2s ease, outline-color 1.2s ease, transform .15s !important; }
+:root.theme-anim .fx-vig{ animation:vigfade 1.2s ease both; }
+@keyframes vigfade{ from{ opacity:0; } to{ opacity:1; } }
+.theme-tg.busy button{ pointer-events:none; cursor:default; }
+@media (prefers-reduced-motion: reduce){ :root.theme-anim *, :root.theme-anim *::before, :root.theme-anim *::after{ transition:none !important; } :root.theme-anim .fx-vig{ animation:none; } }
+
+/* Play / pause do REC: pausa timer, vídeos, faixa em movimento e digitação */
+.rec-btn{ pointer-events:auto; width:18px; height:18px; margin:-2px -4px -2px -2px; padding:0; border:0; border-radius:50%; background:transparent; color:inherit; display:grid; place-items:center; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:background .15s; }
+.rec-btn:hover{ background:rgba(165,4,11,.14); }
+.rec-btn:focus-visible{ outline:2px solid currentColor; outline-offset:1px; }
+.rec-btn svg{ width:10px; height:10px; display:block; }
+.rec-btn .i-play{ display:none; }
+:root.paused .rec-btn .i-play{ display:block; }
+:root.paused .rec-btn .i-pause{ display:none; }
+/* só as animações de ambiente congelam (faixa, cursor, dica dos cards); modais e entradas seguem normais */
+:root.paused .marquee-track, :root.paused .tw-cur, :root.paused .svc{ animation-play-state:paused !important; }
+:root.paused .rec-bar .dot{ animation:none !important; opacity:.35; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .rec-btn:hover{ background:rgba(242,184,194,.18); } }
+:root[data-theme="dark"] .rec-btn:hover{ background:rgba(242,184,194,.18); }
+
+/* Preenchimento rosinha por dentro dos ícones das redes (contorno continua vinho) */
+.socials svg .bg{ fill:var(--pink); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .socials svg .bg{ fill:var(--wine); } }
+:root[data-theme="dark"] .socials svg .bg{ fill:var(--wine); }
+
+/* Hover: o preenchimento vira a cor do botão naquele momento */
+.socials svg .bg{ transition:fill .15s; }
+@media (hover:hover) and (pointer:fine){
+  .socials a:hover svg .bg{ fill:var(--wine); }
+}
+@media (hover:hover) and (pointer:fine) and (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .socials a:hover svg .bg{ fill:var(--pink); }
+}
+@media (hover:hover) and (pointer:fine){
+  :root[data-theme="dark"] .socials a:hover svg .bg{ fill:var(--pink); }
+}
+
+/* Card da frase: foco automático (a frase começa desfocada e a câmera puxa o foco) */
+.q-top{ display:flex; justify-content:space-between; font-family:'Space Grotesk',sans-serif; font-style:normal; font-size:10px; font-weight:700; letter-spacing:.16em; }
+.q-top i{ display:inline-block; width:7px; height:7px; margin-right:6px; border-radius:50%; background:#ff3b30; }
+@media (prefers-reduced-motion: no-preference){ .q-top i{ animation:blink 1.2s steps(2,start) infinite; } }
+.q-stage{ position:relative; margin:16px 0 14px; }
+.q-ret{ position:absolute; inset:-9px -8px; pointer-events:none; opacity:0; color:var(--cream);
+  background:
+    linear-gradient(currentColor,currentColor) top left/14px 2px no-repeat, linear-gradient(currentColor,currentColor) top left/2px 14px no-repeat,
+    linear-gradient(currentColor,currentColor) top right/14px 2px no-repeat, linear-gradient(currentColor,currentColor) top right/2px 14px no-repeat,
+    linear-gradient(currentColor,currentColor) bottom left/14px 2px no-repeat, linear-gradient(currentColor,currentColor) bottom left/2px 14px no-repeat,
+    linear-gradient(currentColor,currentColor) bottom right/14px 2px no-repeat, linear-gradient(currentColor,currentColor) bottom right/2px 14px no-repeat; }
+.quote.run .qt{ animation:qfo 3.4s ease-in-out both; }
+.quote.run .q-ret{ animation:qrt 3.4s ease-in-out both; }
+@keyframes qfo{ 0%{filter:blur(9px);opacity:.55} 30%{filter:blur(3px);opacity:.8} 46%{filter:blur(8px);opacity:.65} 66%{filter:blur(1.5px);opacity:.9} 78%{filter:blur(3px)} 100%{filter:blur(0);opacity:1} }
+@keyframes qrt{ 0%{opacity:0;transform:scale(1.18)} 10%{opacity:.7;transform:scale(1.14)} 34%{transform:scale(1.03);opacity:.8} 48%{transform:scale(1.1)} 70%{transform:scale(1);opacity:.9} 84%{transform:scale(.985);color:var(--cream)} 92%{color:var(--pink);transform:scale(1);opacity:1} 100%{color:var(--pink);opacity:1;transform:scale(1)} }
+:root.paused .quote .qt, :root.paused .quote .q-ret{ animation-play-state:paused !important; }
+:root.paused .q-top i{ animation:none !important; opacity:.35; }
 </style>
 </head>
 <body>
-<div class="vf" id="vf" aria-hidden="true"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i><div class="rec-bar" aria-hidden="true"><span><i class="dot"></i>REC</span><span class="tc" id="tc">00:00:00</span></div></div>
+<div class="vf" id="vf"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i><div class="rec-bar"><span aria-hidden="true"><i class="dot"></i>REC</span><span class="tc" id="tc" aria-hidden="true">00:00:00</span><button type="button" class="rec-btn" id="recBtn" aria-label="Pausar" aria-pressed="false"><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1.2"/><rect x="14" y="4" width="5" height="16" rx="1.2"/></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.7l-12-7.5A1 1 0 0 0 7 4.5z"/></svg></button></div><div class="theme-tg" role="group" aria-label="Tema"><button type="button" data-t="light" aria-label="Tema claro" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button><button type="button" data-t="dark" aria-label="Tema escuro" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a.6.6 0 0 0-.8-.7A9.5 9.5 0 1 0 21.2 15a.6.6 0 0 0-.7-.8z"/></svg></button></div></div>
 <div class="fx fx-vig" aria-hidden="true"></div>
 <div class="fx fx-grain" aria-hidden="true"></div>
 <main class="page">
@@ -253,8 +399,8 @@ body{ padding-bottom:14px; }
     <h1 class="display">Könige</h1>
     <p class="tagline" id="tagline"><span class="tw-sr">Conecte pessoas, transforme momentos em memórias!</span><span class="tw" id="tw" aria-hidden="true"></span><noscript><b class="serif">Conecte pessoas,</b> transforme momentos em memórias!</noscript></p>
     <div class="socials">
-      <a href="https://www.instagram.com/kon.ige/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.4A4.6 4.6 0 1 0 12 16.6 4.6 4.6 0 0 0 12 7.4zm0 7.6a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm5.9-7.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM21.9 8c-.1-1.6-.4-3-1.6-4.2S17.6 2.2 16 2.1C14.3 2 9.7 2 8 2.1 6.4 2.200 5 2.500 3.800 3.700S2.200 6.400 2.100 8C2 9.700 2 14.300 2.100 16c.1 1.600.4 3 1.600 4.200s2.600 1.500 4.200 1.600c1.700.1 6.300.1 8 0 1.600-.1 3-.4 4.200-1.600s1.500-2.600 1.600-4.200c.1-1.700.1-6.300 0-8zM19.800 17.700a3.400 3.400 0 0 1-1.900 1.900c-1.300.5-4.400.4-5.900.4s-4.600.1-5.900-.4a3.400 3.400 0 0 1-1.900-1.900c-.5-1.300-.4-4.400-.4-5.900s-.1-4.600.4-5.900a3.400 3.400 0 0 1 1.900-1.900c1.300-.5 4.400-.4 5.900-.4s4.600-.1 5.900.4a3.400 3.400 0 0 1 1.900 1.900c.5 1.300.4 4.400.4 5.900s.1 4.600-.4 5.900z"/></svg></a>
-      <a href="https://api.whatsapp.com/send/?phone=5548991989305&text=Oi%20Babi%21%20Vi%20seu%20trabalho%20e%20quero%20um%20or%C3%A7amento%20com%20voc%C3%AA%21%20%F0%9F%8E%AC&type=phone_number&app_absent=0" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+      <a href="https://www.instagram.com/kon.ige/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect class="bg" x="3" y="3" width="18" height="18" rx="4.6"/><path d="M12 7.4A4.6 4.6 0 1 0 12 16.6 4.6 4.6 0 0 0 12 7.4zm0 7.6a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm5.9-7.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM21.9 8c-.1-1.6-.4-3-1.6-4.2S17.6 2.2 16 2.1C14.3 2 9.7 2 8 2.1 6.4 2.200 5 2.500 3.800 3.700S2.200 6.400 2.100 8C2 9.700 2 14.300 2.100 16c.1 1.600.4 3 1.600 4.200s2.600 1.500 4.200 1.600c1.700.1 6.300.1 8 0 1.600-.1 3-.4 4.200-1.600s1.500-2.600 1.600-4.200c.1-1.700.1-6.300 0-8zM19.800 17.700a3.400 3.400 0 0 1-1.900 1.900c-1.300.5-4.400.4-5.900.4s-4.600.1-5.900-.4a3.400 3.400 0 0 1-1.900-1.900c-.5-1.300-.4-4.400-.4-5.900s-.1-4.600.4-5.900a3.400 3.400 0 0 1 1.900-1.900c1.300-.5 4.400-.4 5.900-.4s4.600-.1 5.900.4a3.400 3.400 0 0 1 1.900 1.900c.5 1.300.4 4.400.4 5.900s.1 4.600-.4 5.900z"/></svg></a>
+      <a href="https://api.whatsapp.com/send/?phone=5548991989305&text=Oi%20Babi%21%20Vi%20seu%20trabalho%20e%20quero%20um%20or%C3%A7amento%20com%20voc%C3%AA%21%20%F0%9F%8E%AC&type=phone_number&app_absent=0" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="bg" d="M12.051 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884z"/><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
     </div>
   </section>
 
@@ -266,7 +412,7 @@ body{ padding-bottom:14px; }
 
   <div class="marquee" role="button" tabindex="0" aria-pressed="false" aria-label="Pausar ou retomar a faixa em movimento" title="Toque para pausar"><div class="marquee-track" aria-hidden="true"><div class="mq-grp"><span>Reels</span><i>●</i><span>Stories</span><i>●</i><span>Eventos</span><i>●</i><span>Bastidores</span><i>●</i><span>Conteúdo</span><i>●</i><span>Reels</span><i>●</i><span>Stories</span><i>●</i><span>Eventos</span><i>●</i><span>Bastidores</span><i>●</i><span>Conteúdo</span><i>●</i><span>Reels</span><i>●</i><span>Stories</span><i>●</i><span>Eventos</span><i>●</i><span>Bastidores</span><i>●</i><span>Conteúdo</span><i>●</i></div><div class="mq-grp"><span>Reels</span><i>●</i><span>Stories</span><i>●</i><span>Eventos</span><i>●</i><span>Bastidores</span><i>●</i><span>Conteúdo</span><i>●</i><span>Reels</span><i>●</i><span>Stories</span><i>●</i><span>Eventos</span><i>●</i><span>Bastidores</span><i>●</i><span>Conteúdo</span><i>●</i><span>Reels</span><i>●</i><span>Stories</span><i>●</i><span>Eventos</span><i>●</i><span>Bastidores</span><i>●</i><span>Conteúdo</span><i>●</i></div></div></div>
 
-  <h2 class="label display">Serviços <i class="serif">o que eu faço</i></h2>
+  <h2 class="label display">Serviços</h2>
   <div class="services">
     <button type="button" class="svc" aria-pressed="false"><span class="svc-in"><span class="face front"><span class="ico" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="4" width="24" height="40" rx="6" class="f"/><path d="M20 18.5v11l9.5-5.5z" class="s"/><path d="M20.5 9h7"/><circle cx="41" cy="9" r="2.6" class="s" stroke="none"/><path d="M39.5 17.5a6 6 0 0 1 0 7" opacity=".55"/></svg></span><h3>Videomaker</h3><span class="hint" aria-hidden="true">↻</span></span><span class="face back"><p><b>Reels</b>, <b>eventos</b> e <b>bastidores</b> captados e editados direto do <b>celular</b>.</p></span></span></button>
     <button type="button" class="svc" aria-pressed="false"><span class="svc-in"><span class="face front"><span class="ico" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="4" width="28" height="40" rx="6" class="f"/><path d="M15 10h8" /><path d="M26 10h7" opacity=".4"/><circle cx="16.5" cy="17" r="2.2" class="s" stroke="none"/><path d="M24 20.5l2.4 6.1 6.1 2.4-6.1 2.4-2.4 6.1-2.4-6.1-6.1-2.4 6.1-2.4z" class="s"/></svg></span><h3>Storymaker</h3><span class="hint" aria-hidden="true">↻</span></span><span class="face back"><p>Cobertura de <b>stories em tempo real</b>, com ritmo e <b>identidade da marca</b>.</p></span></span></button>
@@ -275,7 +421,7 @@ body{ padding-bottom:14px; }
 
   <div class="marquee rev" role="button" tabindex="0" aria-pressed="false" aria-label="Pausar ou retomar a faixa em movimento" title="Toque para pausar"><div class="marquee-track" aria-hidden="true"><div class="mq-grp"><span>Captado no celular</span><i>●</i><span>Editado com ritmo</span><i>●</i><span>Feito para marcas</span><i>●</i><span>Conectando pessoas</span><i>●</i><span>Captado no celular</span><i>●</i><span>Editado com ritmo</span><i>●</i><span>Feito para marcas</span><i>●</i><span>Conectando pessoas</span><i>●</i><span>Captado no celular</span><i>●</i><span>Editado com ritmo</span><i>●</i><span>Feito para marcas</span><i>●</i><span>Conectando pessoas</span><i>●</i></div><div class="mq-grp"><span>Captado no celular</span><i>●</i><span>Editado com ritmo</span><i>●</i><span>Feito para marcas</span><i>●</i><span>Conectando pessoas</span><i>●</i><span>Captado no celular</span><i>●</i><span>Editado com ritmo</span><i>●</i><span>Feito para marcas</span><i>●</i><span>Conectando pessoas</span><i>●</i><span>Captado no celular</span><i>●</i><span>Editado com ritmo</span><i>●</i><span>Feito para marcas</span><i>●</i><span>Conectando pessoas</span><i>●</i></div></div></div>
 
-  <h2 class="label display">Portfólio <i class="serif">eventos</i></h2>
+  <h2 class="label display">Portfólio</h2>
   <div class="portfolio">
     <div class="pitem"><div class="thumb" role="img" aria-label="Vídeo: Carna Lagoa"><video src="assets/videos/video1.mp4" muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></div><span class="pcap">Carna Lagoa</span></div>
     <div class="pitem"><div class="thumb" role="img" aria-label="Vídeo: Real Time"><video src="assets/videos/video2.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></div><span class="pcap">Real Time</span></div>
@@ -283,7 +429,7 @@ body{ padding-bottom:14px; }
   </div>
   <a class="more" href="https://drive.google.com/drive/folders/1-wV_LNUnHvH6Phr86Rme2fwrgXBkvtQQ" target="_blank" rel="noopener">Ver meu portfólio completo <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
 
-  <div class="quote serif"><span class="qt">“A criatividade é a inteligência se divertindo.”</span><small>KÖNIGE</small></div>
+  <div class="quote serif"><div class="q-top" aria-hidden="true"><span><i></i>REC</span><span>4K · 60</span></div><div class="q-stage"><span class="qt">“A criatividade é a inteligência se divertindo.”</span><span class="q-ret" aria-hidden="true"></span></div><small>KÖNIGE</small></div>
 
   <footer class="site-footer">
     <div class="site-footer-line">© <span id="year">2026</span> · Todos os direitos reservados a Könige</div>
@@ -355,7 +501,7 @@ document.querySelectorAll('.svc').forEach(function(c){
 (function(){
   var vids=[].slice.call(document.querySelectorAll('.thumb video'));
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function play(v){ v.muted=true; var p=v.play(); if(p&&p.catch){ p.catch(function(){}); } }
+  function play(v){ if(window.rec.paused) return; v.muted=true; var p=v.play(); if(p&&p.catch){ p.catch(function(){}); } }
   if(reduce){ vids.forEach(function(v){ v.removeAttribute('autoplay'); v.pause(); }); return; }
   /* Carrega um vídeo por vez: só começa o próximo quando o anterior já pode tocar */
   function loadNext(i){ var v=vids[i]; if(!v) return; var done=false;
@@ -378,7 +524,7 @@ document.querySelectorAll('.svc').forEach(function(c){
   fit(); window.addEventListener('resize',fit); if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(fit); }
 })();
 (function(){ var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); })();
-(function(){ var t=document.getElementById('tc'); if(!t) return; var n=0; function p(x){ return (x<10?'0':'')+x; } setInterval(function(){ n++; t.textContent=p(Math.floor(n/3600))+':'+p(Math.floor(n/60)%60)+':'+p(n%60); },1000); })();
+(function(){ var t=document.getElementById('tc'); if(!t) return; var n=0; function p(x){ return (x<10?'0':'')+x; } setInterval(function(){ if(window.rec.paused) return; n++; t.textContent=p(Math.floor(n/3600))+':'+p(Math.floor(n/60)%60)+':'+p(n%60); },1000); })();
 (function(){
   var ms=[].slice.call(document.querySelectorAll('.marquee-track'));
   function speed(){ ms.forEach(function(t){ var w=t.children[0].getBoundingClientRect().width; if(w) t.style.animationDuration=(w/14)+'s'; }); }
@@ -420,7 +566,7 @@ document.querySelectorAll('.svc').forEach(function(c){
   }
   fit(); window.addEventListener('resize',fit); if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(fit); }
   var i=0,n=0;
-  function wait(ms,fn){ setTimeout(fn,ms); }
+  function wait(ms,fn){ setTimeout(function(){ if(window.rec.paused){ window.rec.q.push(fn); } else { fn(); } },ms); }
   function erase(){ if(n>0){ n--; draw(P[i],n); wait(28,erase); } else { i=(i+1)%P.length; wait(350,type); } }
   function type(){ if(n<len(P[i])){ n++; draw(P[i],n); wait(55,type); } else { wait(2600,erase); } }
   if(reduce){ tw.innerHTML=html(P[0],999); } else { draw(P[0],0); wait(600,type); }
@@ -453,6 +599,51 @@ document.querySelectorAll('.svc').forEach(function(c){
   addEventListener('scroll',req,{passive:true}); addEventListener('resize',req);
   document.addEventListener('click',function(){ setTimeout(req,50); setTimeout(req,450); });
   req();
+})();
+</script>
+<script>
+/* Sol/lua: sem escolha, segue o tema do celular; ao tocar, guarda a escolha */
+(function(){
+  var root=document.documentElement, btns=[].slice.call(document.querySelectorAll('.theme-tg button')), mq=window.matchMedia('(prefers-color-scheme: dark)');
+  function eff(){ return root.getAttribute('data-theme')||(mq.matches?'dark':'light'); }
+  function paint(){ var e=eff(); btns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-t')===e)); }); }
+  var tg=document.querySelector('.theme-tg'), locked=false;
+  btns.forEach(function(b){ b.addEventListener('click',function(){
+    var t=b.getAttribute('data-t'); if(locked||t===eff()) return;
+    locked=true; tg.classList.add('busy'); root.classList.add('theme-anim'); void root.offsetWidth;
+    root.setAttribute('data-theme',t); try{ localStorage.setItem('theme',t); }catch(e){} paint();
+    setTimeout(function(){ root.classList.remove('theme-anim'); tg.classList.remove('busy'); locked=false; },1450);
+  }); });
+  if(mq.addEventListener) mq.addEventListener('change',paint); paint();
+})();
+</script>
+<script>
+/* Play/pause do REC */
+(function(){
+  var b=document.getElementById('recBtn'); if(!b) return; var root=document.documentElement;
+  b.addEventListener('click',function(){
+    var p=!window.rec.paused; window.rec.paused=p; root.classList.toggle('paused',p);
+    b.setAttribute('aria-pressed',String(p)); b.setAttribute('aria-label',p?'Retomar':'Pausar');
+    var vs=[].slice.call(document.querySelectorAll('.thumb video'));
+    if(p){ vs.forEach(function(v){ v.pause(); }); }
+    else {
+      vs.forEach(function(v){ var r=v.getBoundingClientRect(); if(r.bottom>0&&r.top<innerHeight){ v.muted=true; var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); } });
+      window.rec.q.splice(0).forEach(function(f){ f(); });
+    }
+  });
+})();
+</script>
+<script>
+/* Frase: dispara o foco automático quando o card entra na tela */
+(function(){
+  var qd=document.querySelector('.quote'); if(!qd||!('IntersectionObserver' in window)) return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var timer;
+  function go(){ if(window.rec&&window.rec.paused) return; qd.classList.remove('run'); void qd.offsetWidth; qd.classList.add('run'); }
+  new IntersectionObserver(function(es){ es.forEach(function(e){
+    clearInterval(timer);
+    if(e.isIntersecting){ go(); timer=setInterval(go,8000); } else { qd.classList.remove('run'); }
+  }); },{threshold:.6}).observe(qd);
 })();
 </script>
 </body>
