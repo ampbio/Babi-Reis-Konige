@@ -185,8 +185,17 @@ h1{ margin:0; font-size:40px; color:var(--wine); }
   :root:not([data-theme="light"]) .fx-grain{ opacity:.12; mix-blend-mode:screen; }
   :root:not([data-theme="light"]) .fx-vig{ background:radial-gradient(ellipse 90% 70% at 50% 25%, transparent 40%, rgba(0,0,0,.45) 100%); }
 }
-.rec-bar{ display:flex; justify-content:space-between; align-items:center; margin:0 4px 14px; font-family:'Space Grotesk',system-ui,sans-serif; font-weight:700; font-size:10px; letter-spacing:.18em; color:var(--wine); }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .rec-bar{ color:var(--pink); } }
+.rec-bar{ position:absolute; top:12px; left:30px; display:flex; align-items:center; gap:12px; padding:8px 14px; border-radius:999px; background:rgba(243,241,233,.78); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border:1px solid var(--line); box-shadow:0 2px 10px rgba(110,2,7,.12); white-space:nowrap; font-family:'Space Grotesk',system-ui,sans-serif; font-weight:700; font-size:10px; line-height:1; letter-spacing:.18em; color:var(--wine); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .rec-bar{ color:var(--pink); background:rgba(43,5,7,.72); box-shadow:0 2px 12px rgba(0,0,0,.35); } }
+.vf{ position:fixed; z-index:49; pointer-events:none; --c:var(--wine);
+  top:calc(env(safe-area-inset-top,0px) + 6px); left:50%; width:min(calc(100% - 12px),500px); transform:translateX(-50%); bottom:calc(env(safe-area-inset-bottom,0px) + 6px); }
+.vf > i{ opacity:.8; position:absolute; width:22px; height:22px; border:0 solid var(--c); transition:border-color .25s; }
+.vf .tl{ top:0; left:0; border-top-width:2px; border-left-width:2px; }
+.vf .tr{ top:0; right:0; border-top-width:2px; border-right-width:2px; }
+.vf .bl{ bottom:0; left:0; border-bottom-width:2px; border-left-width:2px; }
+.vf .br{ bottom:0; right:0; border-bottom-width:2px; border-right-width:2px; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .vf{ --c:var(--pink); } }
+.hero{ padding-top:24px; }
 .rec-bar .dot{ display:inline-block; width:8px; height:8px; margin-right:6px; border-radius:50%; background:#e10613; vertical-align:0; }
 .rec-bar .tc{ font-variant-numeric:tabular-nums; opacity:.75; }
 .logo-slot{ position:relative; }
@@ -234,12 +243,12 @@ body{ padding-bottom:14px; }
 </style>
 </head>
 <body>
+<div class="vf" id="vf" aria-hidden="true"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i><div class="rec-bar" aria-hidden="true"><span><i class="dot"></i>REC</span><span class="tc" id="tc">00:00:00</span></div></div>
 <div class="fx fx-vig" aria-hidden="true"></div>
 <div class="fx fx-grain" aria-hidden="true"></div>
 <main class="page">
 
   <section class="hero">
-    <div class="rec-bar" aria-hidden="true"><span><i class="dot"></i>REC</span><span class="tc" id="tc">00:00:00</span></div>
     <div class="logo-slot"><span class="cam-frame" aria-hidden="true"></span><img src="assets/imagens/logo.png" alt="Logo Könige" width="132" height="132"></div>
     <h1 class="display">Könige</h1>
     <p class="tagline" id="tagline"><span class="tw-sr">Conecte pessoas, transforme momentos em memórias!</span><span class="tw" id="tw" aria-hidden="true"></span><noscript><b class="serif">Conecte pessoas,</b> transforme momentos em memórias!</noscript></p>
@@ -407,6 +416,35 @@ document.querySelectorAll('.svc').forEach(function(c){
   function erase(){ if(n>0){ n--; draw(P[i],n); wait(28,erase); } else { i=(i+1)%P.length; wait(350,type); } }
   function type(){ if(n<len(P[i])){ n++; draw(P[i],n); wait(55,type); } else { wait(2600,erase); } }
   if(reduce){ tw.innerHTML=html(P[0],999); } else { draw(P[0],0); wait(600,type); }
+})();
+</script>
+<script>
+/* Cantos da moldura ficam brancos quando passam por cima de algo vermelho */
+(function(){
+  var vf=document.getElementById('vf'); if(!vf) return;
+  var cs=[].slice.call(vf.querySelectorAll(':scope > i')), busy=false;
+  function red(el){
+    while(el && el!==document.documentElement){
+      if(el.tagName==='VIDEO'||el.tagName==='IMG') return false;
+      var m=getComputedStyle(el).backgroundColor.match(/[\d.]+/g);
+      if(m && (m.length<4 || +m[3]>.5)){ return +m[0]>90 && +m[1]<70 && +m[2]<70; }
+      el=el.parentElement;
+    }
+    return false;
+  }
+  function check(){
+    busy=false;
+    cs.forEach(function(c){
+      var r=c.getBoundingClientRect(), sx=c.classList.contains('tr')||c.classList.contains('br')?-1:1, sy=c.classList.contains('bl')||c.classList.contains('br')?-1:1;
+      var x0=sx>0?r.left:r.right, y0=sy>0?r.top:r.bottom, hits=0, pts=[[1,1],[11,1],[21,1],[1,11],[1,21]];
+      pts.forEach(function(p){ if(red(document.elementFromPoint(x0+sx*p[0],y0+sy*p[1]))) hits++; });
+      if(hits>=2) c.style.setProperty('--c','#fff'); else c.style.removeProperty('--c');
+    });
+  }
+  function req(){ if(!busy){ busy=true; requestAnimationFrame(check); } }
+  addEventListener('scroll',req,{passive:true}); addEventListener('resize',req);
+  document.addEventListener('click',function(){ setTimeout(req,50); setTimeout(req,450); });
+  setInterval(req,400); req();
 })();
 </script>
 </body>
