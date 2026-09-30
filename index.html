@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Könige</title>
+<link rel="icon" type="image/png" href="assets/imagens/logo.png">
+<link rel="apple-touch-icon" href="assets/imagens/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wine:#A5040B; --wine-dark:#6E0207; --cream:#F3F1E9; --cream-2:#E9E5D8;
+  --pink:#F2B8C2; --ink:#2A0B0C; --card:#FBFAF5; --muted:#7a5c5c;
+  --bg:var(--cream); --text:var(--ink); --line:rgba(165,4,11,.18);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#2B0507; --text:#F3F1E9; --card:#3A080B; --muted:#d8b9b9; --line:rgba(243,241,233,.2); }
+}
+html{ scroll-padding-top:env(safe-area-inset-top,0px); }
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--bg); color:var(--text); font-family:'DM Sans',system-ui,sans-serif; display:flex; justify-content:center; padding:32px 16px 32px; }
+.page{ width:100%; max-width:480px; }
+.display{ font-family:'Anton','Arial Narrow',Impact,sans-serif; text-transform:uppercase; letter-spacing:.01em; line-height:1; font-weight:400; }
+.serif{ font-family:'Space Grotesk','DM Sans',system-ui,sans-serif; font-style:normal; font-weight:500; text-transform:none; }
+
+/* HERO */
+.hero{ text-align:center; }
+.logo-slot{ /* logo: assets/imagens/logo.png */
+  width:132px; height:132px; margin:0 auto 24px; border-radius:50%; background:var(--cream-2);
+  border:3px solid var(--wine); display:grid; place-items:center; overflow:hidden; position:relative;
+  box-shadow:0 0 0 6px var(--bg), 0 0 0 8px var(--pink);
+}
+.logo-slot img{ width:100%; height:100%; object-fit:cover; }
+.logo-slot span{ font-size:11px; letter-spacing:.14em; color:var(--wine); text-transform:uppercase; font-weight:700; }
+h1{ margin:0; font-size:40px; color:var(--wine); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) h1{ color:var(--pink); } }
+.tagline{ font-size:18px; margin:16px 0 0; }
+.tagline b{ color:var(--wine); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tagline b{ color:var(--pink); } }
+
+/* CTA */
+.cta{ margin-top:32px; display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:12px 16px; border-radius:12px; background:var(--wine); color:var(--cream); text-decoration:none; font-family:'Anton',sans-serif; font-size:16px; letter-spacing:.05em; text-transform:uppercase; box-shadow:3px 3px 0 var(--pink); transition:transform .15s, box-shadow .15s; }
+.cta:hover{ transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--pink); }
+.cta svg{ width:18px; height:18px; fill:currentColor; }
+.cta svg.arr{ width:1.1em; height:1.1em; fill:none; }
+
+.cta2{ display:flex; align-items:center; justify-content:center; gap:8px; margin-top:12px; text-align:center; padding:11px 16px; border-radius:12px; border:1.5px solid var(--wine); color:var(--wine); text-decoration:none; font-family:'Anton',sans-serif; font-size:15px; letter-spacing:.05em; text-transform:uppercase; transition:background .15s,color .15s; }
+.arr{ width:1.1em; height:1.1em; flex:none; fill:none; stroke:currentColor; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+.cta2:hover{ background:var(--wine); color:var(--cream); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .cta2{ color:var(--pink); border-color:var(--pink); } }
+
+.cta2{ width:100%; background:none; cursor:pointer; }
+/* MODAL SOBRE */
+.about{ border:0; padding:0; background:transparent; color:var(--text); width:calc(100% - 32px); max-width:440px; max-height:90vh; max-height:90dvh; overflow:visible; }
+.about::backdrop{ background:rgba(42,11,12,.72); }
+.about-card{ position:relative; background:var(--card); border-radius:16px; padding:56px clamp(12px,4vw,16px) clamp(16px,5vw,24px); max-height:90vh; max-height:90dvh; overflow:auto; border:2px solid var(--wine); }
+.about-row{ display:flex; gap:clamp(10px,3.5vw,16px); align-items:stretch; }
+.about-photo{ position:relative; flex:0 0 clamp(96px,36%,150px); min-height:160px; border-radius:16px; background:var(--cream-2); overflow:hidden; }
+.about-info{ flex:1; min-width:0; }
+.about-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+.about-name{ margin:0; text-align:left; font-size:clamp(20px,6.4vw,26px); color:var(--wine); overflow-wrap:anywhere; }
+.about-role{ margin:8px 0 0; text-align:left; font-size:clamp(11px,3.2vw,12px); color:var(--muted); letter-spacing:.02em; }
+.about-text{ margin:12px 0 0; font-size:clamp(12px,3.5vw,13px); line-height:1.5; text-align:left; }
+.about-text b{ color:var(--wine); }
+.about .cta{ margin-top:clamp(16px,5vw,24px); padding:11px 12px; font-size:clamp(13px,4vw,15px); text-align:center; }
+@media (max-width:359px){
+  .about-row{ flex-direction:column; align-items:center; }
+  .about-photo{ flex:none; width:60%; aspect-ratio:4/5; }
+  .about-name,.about-role,.about-text{ text-align:center; }
+}
+.about-close{ position:absolute; top:12px; right:12px; width:36px; height:36px; border-radius:50%; border:1.5px solid var(--wine); background:transparent; color:var(--wine); font-size:22px; line-height:1; cursor:pointer; z-index:2; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .about-close{ color:var(--pink); border-color:var(--pink); } }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .about-name, :root:not([data-theme="light"]) .about-text b{ color:var(--pink); } }
+@media (prefers-reduced-motion: no-preference){ .about[open]{ animation:up .35s cubic-bezier(.2,.8,.2,1); } }
+
+/* SECTIONS */
+.label{ margin:40px 0 16px; font-size:26px; color:var(--wine); display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .label{ color:var(--pink); } }
+.label i{ font-size:14px; font-style:normal; letter-spacing:.02em; color:var(--muted); }
+.services{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.svc{ display:block; width:100%; perspective:900px; background:none; border:0; padding:0; height:130px; cursor:pointer; font:inherit; color:inherit; -webkit-tap-highlight-color:transparent; min-width:0; }
+.svc-in{ display:block; position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .55s cubic-bezier(.2,.8,.2,1); }
+.svc.flipped .svc-in{ transform:rotateY(180deg); }
+.face{ position:absolute; inset:0; border-radius:16px; padding:12px 8px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+.front{ background:var(--card); border:1.5px solid var(--wine); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .front{ border-color:var(--pink); } }
+.back{ background:var(--wine); color:var(--cream); transform:rotateY(180deg); }
+.ico{ --i-line:var(--wine); --i-fill:var(--pink); display:block; width:44px; height:44px; }
+.ico svg{ display:block; width:100%; height:100%; stroke:var(--i-line); }
+.ico .f{ fill:var(--i-fill); }
+.ico .s{ fill:var(--i-line); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .ico{ --i-line:var(--pink); --i-fill:var(--wine); } }
+.svc:hover .ico{ transform:translateY(-2px); }
+.ico{ transition:transform .2s; }
+.svc h3{ display:block; width:100%; margin:0; font-size:14px; line-height:1.15; overflow-wrap:anywhere; }
+.svc .hint{ position:absolute; bottom:7px; right:9px; font-size:13px; color:var(--wine); opacity:.55; }
+.svc p b{ font-weight:700; }
+.svc p{ display:block; margin:0; font-size:12px; line-height:1.35; }
+@media (prefers-reduced-motion: no-preference){
+  .services:not(.seen) .svc:not(.flipped){ animation:peek 5s ease-in-out 1.2s infinite; }
+  .services:not(.seen) .svc:nth-child(2):not(.flipped){ animation-delay:1.5s; }
+  .services:not(.seen) .svc:nth-child(3):not(.flipped){ animation-delay:1.8s; }
+  @keyframes peek{ 0%{transform:perspective(700px) rotateY(0)} 8%{transform:perspective(700px) rotateY(28deg)} 16%{transform:perspective(700px) rotateY(-12deg)} 24%{transform:perspective(700px) rotateY(6deg)} 32%,100%{transform:perspective(700px) rotateY(0)} }
+}
+@media (prefers-reduced-motion: reduce){ .svc-in{ transition:none; } }
+
+.portfolio{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.thumb{ position:relative; display:block; width:100%; padding:0; aspect-ratio:9/16; border-radius:16px; background:var(--wine); overflow:hidden; }
+.thumb video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; background:var(--wine); }
+.more{ display:flex; align-items:center; justify-content:center; gap:8px; margin-top:12px; text-align:center; padding:11px 16px; border:1.5px solid var(--wine); border-radius:12px; color:var(--wine); font-family:'Anton',sans-serif; font-weight:400; font-size:15px; letter-spacing:.05em; text-transform:uppercase; text-decoration:none; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .more{ color:var(--pink); border-color:var(--pink); } }
+
+.quote{ margin-top:32px; padding:14px 16px; background:var(--wine); color:var(--cream); border-radius:14px; text-align:center; container-type:inline-size; }
+.quote .qt{ display:block; white-space:nowrap; font-size:min(17px,3.5cqw); line-height:1.3; }
+.quote small{ display:block; margin-top:4px; font-family:'DM Sans',sans-serif; font-style:normal; font-size:10px; letter-spacing:.14em; opacity:.8; }
+
+.socials{ display:flex; justify-content:center; gap:16px; margin-top:16px; }
+.socials a{ width:50px; height:50px; border-radius:50%; display:grid; place-items:center; background:var(--card); border:1.5px solid var(--wine); color:var(--wine); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .socials a{ color:var(--pink); border-color:var(--pink); } }
+.socials svg{ width:22px; height:22px; fill:currentColor; }
+.site-footer{ margin-top:40px; text-align:center; }
+.site-footer-line{ font-size:11px; color:var(--muted); line-height:1.6; letter-spacing:.2px; }
+.site-footer-line.dev{ margin-top:2px; }
+.site-footer-line.dev a{ color:var(--wine); font-weight:700; text-decoration:none; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .site-footer-line.dev a{ color:var(--pink); } }
+@media (hover:hover) and (pointer:fine){ .site-footer-line.dev a:hover{ text-decoration:underline; } }
+
+@media (prefers-reduced-motion: no-preference){
+  .hero,.cta,.thumb{ animation:up .6s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes up{ from{ opacity:0; transform:translateY(14px);} to{ opacity:1; transform:none;} }
+}
+
+/* Modal de orçamento por serviço */
+.qmodal .about-card{ padding:22px clamp(14px,4.5vw,20px) clamp(16px,5vw,22px); }
+.qmodal .about-name{ margin:0 44px 0 0; font-size:clamp(20px,6.4vw,26px); }
+.qmodal .about-role{ margin:6px 0 0; }
+.qlist{ display:flex; flex-direction:column; gap:10px; margin-top:16px; }
+.qcard{ background:var(--bg); border:1.5px solid var(--line); border-radius:14px; padding:12px; }
+.qhead{ display:flex; align-items:center; gap:12px; }
+.qhead .ico{ flex:none; width:36px; height:36px; }
+.qtxt{ min-width:0; text-align:left; }
+.qtxt h3{ margin:0; font-size:15px; line-height:1.15; color:var(--wine); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .qtxt h3{ color:var(--pink); } }
+.qtxt p{ margin:3px 0 0; font-size:12px; line-height:1.4; color:var(--muted); }
+.qmodal .qcard .cta{ margin-top:12px; padding:10px 12px; font-size:clamp(12px,3.6vw,14px); }
+
+/* Hover dos ícones de rede social */
+.socials a{ transition:transform .15s, box-shadow .15s, background .15s, color .15s; }
+.socials a:focus-visible{ outline:2px solid var(--wine); outline-offset:3px; }
+.socials a:active{ transform:scale(.94); }
+@media (hover:hover) and (pointer:fine){
+  .socials a:hover{ background:var(--wine); color:var(--cream); transform:translate(-1px,-1px); box-shadow:3px 3px 0 var(--pink); }
+}
+@media (hover:hover) and (pointer:fine) and (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .socials a:hover{ background:var(--pink); color:var(--wine-dark); box-shadow:3px 3px 0 var(--wine); }
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .socials a:focus-visible{ outline-color:var(--pink); } }
+
+/* Hover do botão "Ver meu portfólio completo" */
+.more{ transition:transform .15s, box-shadow .15s, background .15s, color .15s; }
+.more:focus-visible{ outline:2px solid var(--wine); outline-offset:3px; }
+.more:active{ transform:scale(.98); }
+@media (hover:hover) and (pointer:fine){
+  .more:hover{ background:var(--wine); color:var(--cream); transform:translate(-1px,-1px); box-shadow:3px 3px 0 var(--pink); }
+}
+@media (hover:hover) and (pointer:fine) and (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .more:hover{ background:var(--pink); color:var(--wine-dark); box-shadow:3px 3px 0 var(--wine); }
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .more:focus-visible{ outline-color:var(--pink); } }
+
+/* Legendas dos vídeos do portfólio */
+.pitem{ min-width:0; display:flex; flex-direction:column; align-items:center; gap:6px; }
+.pcap{ display:block; width:100%; text-align:center; font-size:11px; line-height:1.25; font-weight:500; color:var(--wine); overflow-wrap:anywhere; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .pcap{ color:var(--pink); } }
+
+/* Fundo com vida: grão de filme, vinheta, REC, cantos de câmera e faixa em movimento */
+.page{ position:relative; z-index:1; }
+.fx{ position:fixed; inset:0; pointer-events:none; z-index:0; }
+.fx-grain{ background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:160px 160px; opacity:.09; mix-blend-mode:multiply; }
+.fx-vig{ background:radial-gradient(ellipse 90% 70% at 50% 25%, transparent 45%, rgba(165,4,11,.13) 100%); }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .fx-grain{ opacity:.12; mix-blend-mode:screen; }
+  :root:not([data-theme="light"]) .fx-vig{ background:radial-gradient(ellipse 90% 70% at 50% 25%, transparent 40%, rgba(0,0,0,.45) 100%); }
+}
+.rec-bar{ display:flex; justify-content:space-between; align-items:center; margin:0 4px 14px; font-family:'Space Grotesk',system-ui,sans-serif; font-weight:700; font-size:10px; letter-spacing:.18em; color:var(--wine); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .rec-bar{ color:var(--pink); } }
+.rec-bar .dot{ display:inline-block; width:8px; height:8px; margin-right:6px; border-radius:50%; background:#e10613; vertical-align:0; }
+.rec-bar .tc{ font-variant-numeric:tabular-nums; opacity:.75; }
+.logo-slot{ position:relative; }
+.cam-frame{ position:absolute; inset:-10px; pointer-events:none; --c:var(--wine);
+  background:
+    linear-gradient(var(--c),var(--c)) top left/16px 2px no-repeat, linear-gradient(var(--c),var(--c)) top left/2px 16px no-repeat,
+    linear-gradient(var(--c),var(--c)) top right/16px 2px no-repeat, linear-gradient(var(--c),var(--c)) top right/2px 16px no-repeat,
+    linear-gradient(var(--c),var(--c)) bottom left/16px 2px no-repeat, linear-gradient(var(--c),var(--c)) bottom left/2px 16px no-repeat,
+    linear-gradient(var(--c),var(--c)) bottom right/16px 2px no-repeat, linear-gradient(var(--c),var(--c)) bottom right/2px 16px no-repeat; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .cam-frame{ --c:var(--pink); } }
+.marquee{ margin-top:32px; overflow:hidden; padding:7px 0; color:var(--wine); border-top:1px solid var(--line); border-bottom:1px solid var(--line); -webkit-mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent); mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent); }
+.marquee-track{ display:flex; width:max-content; will-change:transform; animation:mq 80s linear infinite; }
+.mq-grp{ display:flex; flex:none; align-items:center; gap:18px; padding-right:18px; }
+.marquee.rev .marquee-track{ animation-direction:reverse; }
+.marquee span{ flex:none; font-family:'Anton',sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; white-space:nowrap; opacity:.75; }
+.marquee i{ flex:none; font-style:normal; font-size:6px; line-height:1; opacity:.6; padding:0; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .marquee{ color:var(--pink); } }
+@keyframes mq{ to{ transform:translateX(-50%); } }
+@media (prefers-reduced-motion: no-preference){ .rec-bar .dot{ animation:blink 1.2s steps(2,start) infinite; } @keyframes blink{ 50%{ opacity:.15; } } }
+@media (prefers-reduced-motion: reduce){ .marquee-track{ animation:none; } }
+
+/* Borda fina nos vídeos (igual aos cards de serviço) e nomes em negrito */
+.thumb{ border:1.5px solid var(--wine); box-sizing:border-box; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .thumb{ border-color:var(--pink); } }
+.pcap{ font-weight:700; }
+
+/* Rodapé enxuto com linha suave de separação */
+body{ padding-bottom:14px; }
+.site-footer{ margin-top:28px; padding-top:14px; background:linear-gradient(90deg,transparent,var(--line) 20%,var(--line) 80%,transparent) top/100% 1px no-repeat; }
+.site-footer-line{ line-height:1.5; }
+.site-footer-line.dev{ margin-top:0; }
+
+/* Toque/clique na faixa pausa o movimento */
+.marquee{ cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.marquee.paused .marquee-track{ animation-play-state:paused; }
+.marquee:focus-visible{ outline:2px solid var(--wine); outline-offset:2px; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .marquee:focus-visible{ outline-color:var(--pink); } }
+
+/* Frase do topo digitada, sempre em uma linha */
+.tagline{ white-space:nowrap; line-height:1.5; min-height:1.5em; }
+.tw-sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.tw-cur{ display:inline-block; width:2px; height:1em; margin-left:2px; background:var(--wine); vertical-align:-.14em; animation:twb 1s steps(1) infinite; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tw-cur{ background:var(--pink); } }
+@keyframes twb{ 50%{ opacity:0; } }
+</style>
+</head>
+<body>
+<div class="fx fx-vig" aria-hidden="true"></div>
+<div class="fx fx-grain" aria-hidden="true"></div>
+<main class="page">
+
+  <section class="hero">
+    <div class="rec-bar" aria-hidden="true"><span><i class="dot"></i>REC</span><span class="tc" id="tc">00:00:00</span></div>
+    <div class="logo-slot"><span class="cam-frame" aria-hidden="true"></span><img src="assets/imagens/logo.png" alt="Logo Könige" width="132" height="132"></div>
+    <h1 class="display">Könige</h1>
+    <p class="tagline" id="tagline"><span class="tw-sr">Conecte pessoas, transforme momentos em memórias!</span><span class="tw" id="tw" aria-hidden="true"></span><noscript><b class="serif">Conecte pessoas,</b> transforme momentos em memórias!</noscript></p>
+    <div class="socials">
+      <a href="https://www.instagram.com/kon.ige/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.4A4.6 4.6 0 1 0 12 16.6 4.6 4.6 0 0 0 12 7.4zm0 7.6a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm5.9-7.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM21.9 8c-.1-1.6-.4-3-1.6-4.2S17.6 2.2 16 2.1C14.3 2 9.7 2 8 2.1 6.4 2.200 5 2.500 3.800 3.700S2.200 6.400 2.100 8C2 9.700 2 14.300 2.100 16c.1 1.600.4 3 1.600 4.200s2.600 1.500 4.200 1.600c1.700.1 6.300.1 8 0 1.600-.1 3-.4 4.200-1.600s1.500-2.600 1.600-4.200c.1-1.700.1-6.300 0-8zM19.800 17.700a3.400 3.400 0 0 1-1.900 1.900c-1.300.5-4.400.4-5.900.4s-4.600.1-5.900-.4a3.400 3.400 0 0 1-1.900-1.900c-.5-1.300-.4-4.400-.4-5.900s-.1-4.600.4-5.900a3.400 3.400 0 0 1 1.900-1.900c1.300-.5 4.400-.4 5.900-.4s4.600-.1 5.900.4a3.400 3.400 0 0 1 1.900 1.900c.5 1.300.4 4.400.4 5.900s.1 4.600-.4 5.900z"/></svg></a>
+      <a href="https://api.whatsapp.com/send/?phone=5548991989305&text=Oi%20Babi%21%20Vi%20seu%20trabalho%20e%20quero%20um%20or%C3%A7amento%20com%20voc%C3%AA%21%20%F0%9F%8E%AC&type=phone_number&app_absent=0" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+    </div>
+  </section>
+
+  <a class="cta" id="openQuote" target="_blank" rel="noopener" href="https://api.whatsapp.com/send/?phone=5548991989305&text=Oi%20Babi!%20Vi%20seu%20trabalho%20e%20quero%20um%20or%C3%A7amento%20de%20v%C3%ADdeo%20mobile%20%F0%9F%8E%AC&type=phone_number&app_absent=0">
+    Pedir orçamento <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+  </a>
+
+  <button type="button" class="cta2" id="openAbout" aria-haspopup="dialog">Me conheça aqui <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+
+  <div class="marquee" role="button" tabindex="0" aria-pressed="false" aria-label="Pausar ou retomar a faixa em movimento" title="Toque para pausar"><div class="marquee-track" aria-hidden="true"><div class="mq-grp"><span>Reels</span><i>●</i><span>Stories</span><i>●</i><span>Eventos</span><i>●</i><span>Bastidores</span><i>●</i><span>Conteúdo</span><i>●</i><span>Reels</span><i>●</i><span>Stories</span><i>●</i><span>Eventos</span><i>●</i><span>Bastidores</span><i>●</i><span>Conteúdo</span><i>●</i><span>Reels</span><i>●</i><span>Stories</span><i>●</i><span>Eventos</span><i>●</i><span>Bastidores</span><i>●</i><span>Conteúdo</span><i>●</i></div><div class="mq-grp"><span>Reels</span><i>●</i><span>Stories</span><i>●</i><span>Eventos</span><i>●</i><span>Bastidores</span><i>●</i><span>Conteúdo</span><i>●</i><span>Reels</span><i>●</i><span>Stories</span><i>●</i><span>Eventos</span><i>●</i><span>Bastidores</span><i>●</i><span>Conteúdo</span><i>●</i><span>Reels</span><i>●</i><span>Stories</span><i>●</i><span>Eventos</span><i>●</i><span>Bastidores</span><i>●</i><span>Conteúdo</span><i>●</i></div></div></div>
+
+  <h2 class="label display">Serviços <i class="serif">o que eu faço</i></h2>
+  <div class="services">
+    <button type="button" class="svc" aria-pressed="false"><span class="svc-in"><span class="face front"><span class="ico" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="4" width="24" height="40" rx="6" class="f"/><path d="M20 18.5v11l9.5-5.5z" class="s"/><path d="M20.5 9h7"/><circle cx="41" cy="9" r="2.6" class="s" stroke="none"/><path d="M39.5 17.5a6 6 0 0 1 0 7" opacity=".55"/></svg></span><h3>Videomaker</h3><span class="hint" aria-hidden="true">↻</span></span><span class="face back"><p><b>Reels</b>, <b>eventos</b> e <b>bastidores</b> captados e editados direto do <b>celular</b>.</p></span></span></button>
+    <button type="button" class="svc" aria-pressed="false"><span class="svc-in"><span class="face front"><span class="ico" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="4" width="28" height="40" rx="6" class="f"/><path d="M15 10h8" /><path d="M26 10h7" opacity=".4"/><circle cx="16.5" cy="17" r="2.2" class="s" stroke="none"/><path d="M24 20.5l2.4 6.1 6.1 2.4-6.1 2.4-2.4 6.1-2.4-6.1-6.1-2.4 6.1-2.4z" class="s"/></svg></span><h3>Storymaker</h3><span class="hint" aria-hidden="true">↻</span></span><span class="face back"><p>Cobertura de <b>stories em tempo real</b>, com ritmo e <b>identidade da marca</b>.</p></span></span></button>
+    <button type="button" class="svc" aria-pressed="false"><span class="svc-in"><span class="face front"><span class="ico" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7h28a5 5 0 0 1 5 5v17a5 5 0 0 1-5 5H27l-9 8v-8h-8a5 5 0 0 1-5-5V12a5 5 0 0 1 5-5z" class="f"/><path d="M24 28.5c-8-5.3-7.4-12.4-2.9-12.4 1.8 0 2.4 1 2.9 1.9.5-.9 1.1-1.9 2.9-1.9 4.500 0 5.100 7.100-2.900 12.400z" class="s"/></svg></span><h3>Social media</h3><span class="hint" aria-hidden="true">↻</span></span><span class="face back"><p><b>Planejamento</b> e <b>conteúdo</b> que conecta <b>marcas e pessoas</b>.</p></span></span></button>
+  </div>
+
+  <div class="marquee rev" role="button" tabindex="0" aria-pressed="false" aria-label="Pausar ou retomar a faixa em movimento" title="Toque para pausar"><div class="marquee-track" aria-hidden="true"><div class="mq-grp"><span>Captado no celular</span><i>●</i><span>Editado com ritmo</span><i>●</i><span>Feito para marcas</span><i>●</i><span>Conectando pessoas</span><i>●</i><span>Captado no celular</span><i>●</i><span>Editado com ritmo</span><i>●</i><span>Feito para marcas</span><i>●</i><span>Conectando pessoas</span><i>●</i><span>Captado no celular</span><i>●</i><span>Editado com ritmo</span><i>●</i><span>Feito para marcas</span><i>●</i><span>Conectando pessoas</span><i>●</i></div><div class="mq-grp"><span>Captado no celular</span><i>●</i><span>Editado com ritmo</span><i>●</i><span>Feito para marcas</span><i>●</i><span>Conectando pessoas</span><i>●</i><span>Captado no celular</span><i>●</i><span>Editado com ritmo</span><i>●</i><span>Feito para marcas</span><i>●</i><span>Conectando pessoas</span><i>●</i><span>Captado no celular</span><i>●</i><span>Editado com ritmo</span><i>●</i><span>Feito para marcas</span><i>●</i><span>Conectando pessoas</span><i>●</i></div></div></div>
+
+  <h2 class="label display">Portfólio <i class="serif">eventos</i></h2>
+  <div class="portfolio">
+    <div class="pitem"><div class="thumb" role="img" aria-label="Vídeo: Carna Lagoa"><video src="assets/videos/video1.mp4" muted loop autoplay playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></div><span class="pcap">Carna Lagoa</span></div>
+    <div class="pitem"><div class="thumb" role="img" aria-label="Vídeo: Real Time"><video src="assets/videos/video2.mp4" muted loop autoplay playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></div><span class="pcap">Real Time</span></div>
+    <div class="pitem"><div class="thumb" role="img" aria-label="Vídeo: Réveillon Bom Começo"><video src="assets/videos/video3.mp4" muted loop autoplay playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></div><span class="pcap">Réveillon Bom Começo</span></div>
+  </div>
+  <a class="more" href="https://drive.google.com/drive/folders/1-wV_LNUnHvH6Phr86Rme2fwrgXBkvtQQ" target="_blank" rel="noopener">Ver meu portfólio completo <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+
+  <div class="quote serif"><span class="qt">“A criatividade é a inteligência se divertindo.”</span><small>KÖNIGE</small></div>
+
+  <footer class="site-footer">
+    <div class="site-footer-line">© <span id="year">2026</span> · Todos os direitos reservados a Könige</div>
+    <div class="site-footer-line dev">Website desenvolvido por <a href="https://amplifying.com.br/servicos" target="_blank" rel="noopener noreferrer">AMPLIFYING</a></div>
+  </footer>
+</main>
+<dialog class="about qmodal" id="quoteModal" aria-labelledby="quoteTitle">
+  <div class="about-card">
+    <button type="button" class="about-close" id="closeQuote" aria-label="Fechar">×</button>
+    <h2 class="about-name display" id="quoteTitle">Faça seu orçamento</h2>
+    <p class="about-role">Escolha o serviço e continue a conversa no WhatsApp</p>
+    <div class="qlist">
+      <div class="qcard">
+        <div class="qhead">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="4" width="24" height="40" rx="6" class="f"/><path d="M20 18.5v11l9.5-5.5z" class="s"/><path d="M20.5 9h7"/><circle cx="41" cy="9" r="2.6" class="s" stroke="none"/><path d="M39.5 17.5a6 6 0 0 1 0 7" opacity=".55"/></svg></span>
+          <div class="qtxt"><h3>Videomaker</h3><p>Reels, eventos e bastidores captados e editados direto do celular.</p></div>
+        </div>
+        <a class="cta" target="_blank" rel="noopener" href="https://api.whatsapp.com/send/?phone=5548991989305&amp;text=Oi%20Babi%21%20Vi%20seu%20trabalho%20e%20quero%20um%20or%C3%A7amento%20de%20videomaker%20%28v%C3%ADdeo%20mobile%29%20%F0%9F%8E%AC&amp;type=phone_number&amp;app_absent=0">Orçar videomaker <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="qcard">
+        <div class="qhead">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="4" width="28" height="40" rx="6" class="f"/><path d="M15 10h8" /><path d="M26 10h7" opacity=".4"/><circle cx="16.5" cy="17" r="2.2" class="s" stroke="none"/><path d="M24 20.5l2.4 6.1 6.1 2.4-6.1 2.4-2.4 6.1-2.4-6.1-6.1-2.4 6.1-2.4z" class="s"/></svg></span>
+          <div class="qtxt"><h3>Storymaker</h3><p>Cobertura de stories em tempo real, com ritmo e identidade da marca.</p></div>
+        </div>
+        <a class="cta" target="_blank" rel="noopener" href="https://api.whatsapp.com/send/?phone=5548991989305&amp;text=Oi%20Babi%21%20Vi%20seu%20trabalho%20e%20quero%20um%20or%C3%A7amento%20de%20storymaker%20%28cobertura%20de%20stories%29%20%F0%9F%93%B1&amp;type=phone_number&amp;app_absent=0">Orçar storymaker <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="qcard">
+        <div class="qhead">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7h28a5 5 0 0 1 5 5v17a5 5 0 0 1-5 5H27l-9 8v-8h-8a5 5 0 0 1-5-5V12a5 5 0 0 1 5-5z" class="f"/><path d="M24 28.5c-8-5.3-7.4-12.4-2.9-12.4 1.8 0 2.4 1 2.9 1.9.5-.9 1.1-1.9 2.9-1.9 4.500 0 5.100 7.100-2.900 12.400z" class="s"/></svg></span>
+          <div class="qtxt"><h3>Social media</h3><p>Planejamento e conteúdo que conecta marcas e pessoas.</p></div>
+        </div>
+        <a class="cta" target="_blank" rel="noopener" href="https://api.whatsapp.com/send/?phone=5548991989305&amp;text=Oi%20Babi%21%20Vi%20seu%20trabalho%20e%20quero%20um%20or%C3%A7amento%20de%20social%20media%20%F0%9F%92%AC&amp;type=phone_number&amp;app_absent=0">Orçar social media <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</dialog>
+<dialog class="about" id="aboutModal" aria-labelledby="aboutName">
+  <div class="about-card">
+    <button type="button" class="about-close" id="closeAbout" aria-label="Fechar">×</button>
+    <div class="about-row">
+      <div class="about-photo"><img src="assets/imagens/babi.jpg" alt="Bárbara Reis" onerror="this.style.display='none'"></div>
+      <div class="about-info">
+        <h2 class="about-name display" id="aboutName">Bárbara Reis</h2>
+        <p class="about-role">Videomaker mobile · Fundadora da Könige</p>
+        <p class="about-text">Técnica em comércio e graduanda em <b>Marketing</b>, atuo como social media desde 2022. No meio dessa jornada, me apaixonei pela área de <b>videomaker</b> e pela cobertura de eventos, e hoje transformo momentos em memórias.</p>
+      </div>
+    </div>
+    <a class="cta" target="_blank" rel="noopener" href="https://heyzine.com/flip-book/5f983fb909.html#page/1">Conheça melhor por aqui <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+  </div>
+</dialog>
+<script>
+document.querySelectorAll('.svc').forEach(function(c){
+  c.addEventListener('click',function(){ document.querySelector('.services').classList.add('seen'); var f=c.classList.toggle('flipped'); c.setAttribute('aria-pressed',f); });
+});
+(function(){
+  var q=document.getElementById('quoteModal'), o=document.getElementById('openQuote');
+  o.addEventListener('click',function(e){ e.preventDefault(); q.showModal(); document.body.style.overflow='hidden'; });
+  document.getElementById('closeQuote').addEventListener('click',function(){ q.close(); });
+  q.addEventListener('click',function(e){ if(e.target===q) q.close(); });
+  q.addEventListener('close',function(){ document.body.style.overflow=''; });
+})();
+(function(){
+  var m=document.getElementById('aboutModal');
+  document.getElementById('openAbout').addEventListener('click',function(){ m.showModal(); document.body.style.overflow='hidden'; });
+  document.getElementById('closeAbout').addEventListener('click',function(){ m.close(); });
+  m.addEventListener('click',function(e){ if(e.target===m) m.close(); });
+  m.addEventListener('close',function(){ document.body.style.overflow=''; });
+})();
+(function(){
+  var vids=[].slice.call(document.querySelectorAll('.thumb video'));
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function play(v){ v.muted=true; var p=v.play(); if(p&&p.catch){ p.catch(function(){}); } }
+  if(reduce){ vids.forEach(function(v){ v.removeAttribute('autoplay'); v.pause(); }); return; }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ play(e.target); } else { e.target.pause(); } }); },{threshold:.25});
+    vids.forEach(function(v){ io.observe(v); });
+  } else { vids.forEach(play); }
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden){ vids.forEach(function(v){ var r=v.getBoundingClientRect(); if(r.bottom>0&&r.top<innerHeight){ play(v); } }); } });
+})();
+(function(){
+  var q=document.querySelector('.quote'); if(!q) return; var t=q.querySelector('.qt');
+  function fit(){ t.style.fontSize=''; var size=parseFloat(getComputedStyle(t).fontSize); var max=q.clientWidth-parseFloat(getComputedStyle(q).paddingLeft)-parseFloat(getComputedStyle(q).paddingRight);
+    while(t.scrollWidth>max+0.5 && size>9){ size-=0.5; t.style.fontSize=size+'px'; } }
+  fit(); window.addEventListener('resize',fit); if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(fit); }
+})();
+(function(){ var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); })();
+(function(){ var t=document.getElementById('tc'); if(!t) return; var n=0; function p(x){ return (x<10?'0':'')+x; } setInterval(function(){ n++; t.textContent=p(Math.floor(n/3600))+':'+p(Math.floor(n/60)%60)+':'+p(n%60); },1000); })();
+(function(){
+  var ms=[].slice.call(document.querySelectorAll('.marquee-track'));
+  function speed(){ ms.forEach(function(t){ var w=t.children[0].getBoundingClientRect().width; if(w) t.style.animationDuration=(w/14)+'s'; }); }
+  speed(); window.addEventListener('resize',speed); if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(speed); }
+})();
+(function(){
+  var ms=[].slice.call(document.querySelectorAll('.marquee'));
+  function toggle(){ var pause=!ms[0].classList.contains('paused'); ms.forEach(function(m){ m.classList.toggle('paused',pause); m.setAttribute('aria-pressed',pause); m.title=pause?'Toque para retomar':'Toque para pausar'; }); }
+  ms.forEach(function(m){
+    m.addEventListener('click',toggle);
+    m.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+  });
+})();
+(function(){
+  var tag=document.getElementById('tagline'), tw=document.getElementById('tw');
+  if(!tag||!tw) return;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Frases (edite aqui). b:true = destaque em negrito/cor da marca
+  var P=[
+    [{b:1,t:'Conecte pessoas,'},{t:' transforme momentos em memórias!'}],
+    [{t:'Que tal '},{b:1,t:'eternizar'},{t:' o seu evento em uma '},{b:1,t:'linda lembrança'},{t:'?'}],
+    [{t:'Todo momento merece '},{b:1,t:'ser lembrado'},{t:'!'}],
+    [{t:'Captação e edição de '},{b:1,t:'vídeos direto do celular'},{t:'!'}],
+    [{t:'Seu evento contado '},{b:1,t:'em tempo real'},{t:'!'}]
+  ];
+  function esc(x){ return x.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  function html(ph,n){ var out='',left=n; ph.forEach(function(sg){ if(left<=0) return; var tx=sg.t.slice(0,left); left-=sg.t.length; out+=sg.b?'<b class="serif">'+esc(tx)+'</b>':esc(tx); }); return out; }
+  function len(ph){ return ph.reduce(function(a,sg){ return a+sg.t.length; },0); }
+  function draw(ph,n){ tw.innerHTML=html(ph,n)+'<span class="tw-cur"></span>'; }
+  // fonte única que cabe a frase mais longa em uma linha
+  function fit(){
+    tag.style.fontSize=''; var base=parseFloat(getComputedStyle(tag).fontSize), max=0;
+    var m=tag.cloneNode(false); m.removeAttribute('id'); m.style.cssText='position:absolute;visibility:hidden;left:0;top:0;width:auto;max-width:none;white-space:nowrap;';
+    tag.parentNode.appendChild(m);
+    P.forEach(function(ph){ m.innerHTML=html(ph,999); max=Math.max(max,m.getBoundingClientRect().width); });
+    tag.parentNode.removeChild(m);
+    var avail=tag.parentNode.clientWidth-6;
+    if(max>avail) tag.style.fontSize=Math.max(11,base*avail/max)+'px';
+  }
+  fit(); window.addEventListener('resize',fit); if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(fit); }
+  var i=0,n=0;
+  function wait(ms,fn){ setTimeout(fn,ms); }
+  function erase(){ if(n>0){ n--; draw(P[i],n); wait(28,erase); } else { i=(i+1)%P.length; wait(350,type); } }
+  function type(){ if(n<len(P[i])){ n++; draw(P[i],n); wait(55,type); } else { wait(2600,erase); } }
+  if(reduce){ tw.innerHTML=html(P[0],999); } else { draw(P[0],0); wait(600,type); }
+})();
+</script>
+</body>
+</html>
