@@ -179,14 +179,14 @@ h1{ margin:0; font-size:40px; color:var(--wine); }
 /* Fundo com vida: grão de filme, vinheta, REC, cantos de câmera e faixa em movimento */
 .page{ position:relative; z-index:1; }
 .fx{ position:fixed; inset:0; pointer-events:none; z-index:0; }
-.fx-grain{ background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:160px 160px; opacity:.09; mix-blend-mode:multiply; }
+.fx-grain{ background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:160px 160px; opacity:.09; }
 .fx-vig{ background:radial-gradient(ellipse 90% 70% at 50% 25%, transparent 45%, rgba(165,4,11,.13) 100%); }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .fx-grain{ opacity:.12; mix-blend-mode:screen; }
+  :root:not([data-theme="light"]) .fx-grain{ display:none; }
   :root:not([data-theme="light"]) .fx-vig{ background:radial-gradient(ellipse 90% 70% at 50% 25%, transparent 40%, rgba(0,0,0,.45) 100%); }
 }
-.rec-bar{ position:absolute; top:12px; left:30px; display:flex; align-items:center; gap:12px; padding:8px 14px; border-radius:999px; background:rgba(243,241,233,.78); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border:1px solid var(--line); box-shadow:0 2px 10px rgba(110,2,7,.12); white-space:nowrap; font-family:'Space Grotesk',system-ui,sans-serif; font-weight:700; font-size:10px; line-height:1; letter-spacing:.18em; color:var(--wine); }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .rec-bar{ color:var(--pink); background:rgba(43,5,7,.72); box-shadow:0 2px 12px rgba(0,0,0,.35); } }
+.rec-bar{ position:absolute; top:12px; left:30px; display:flex; align-items:center; gap:12px; padding:8px 14px; border-radius:999px; background:rgba(243,241,233,.92); border:1px solid var(--line); box-shadow:0 2px 10px rgba(110,2,7,.12); white-space:nowrap; font-family:'Space Grotesk',system-ui,sans-serif; font-weight:700; font-size:10px; line-height:1; letter-spacing:.18em; color:var(--wine); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .rec-bar{ color:var(--pink); background:rgba(43,5,7,.9); box-shadow:0 2px 12px rgba(0,0,0,.35); } }
 .vf{ position:fixed; z-index:49; pointer-events:none; --c:var(--wine);
   top:calc(env(safe-area-inset-top,0px) + 6px); left:50%; width:min(calc(100% - 12px),500px); transform:translateX(-50%); bottom:calc(env(safe-area-inset-bottom,0px) + 6px); }
 .vf > i{ opacity:.8; position:absolute; width:22px; height:22px; border:0 solid var(--c); transition:border-color .25s; }
@@ -277,9 +277,9 @@ body{ padding-bottom:14px; }
 
   <h2 class="label display">Portfólio <i class="serif">eventos</i></h2>
   <div class="portfolio">
-    <div class="pitem"><div class="thumb" role="img" aria-label="Vídeo: Carna Lagoa"><video src="assets/videos/video1.mp4" muted loop autoplay playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></div><span class="pcap">Carna Lagoa</span></div>
-    <div class="pitem"><div class="thumb" role="img" aria-label="Vídeo: Real Time"><video src="assets/videos/video2.mp4" muted loop autoplay playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></div><span class="pcap">Real Time</span></div>
-    <div class="pitem"><div class="thumb" role="img" aria-label="Vídeo: Réveillon Bom Começo"><video src="assets/videos/video3.mp4" muted loop autoplay playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></div><span class="pcap">Réveillon Bom Começo</span></div>
+    <div class="pitem"><div class="thumb" role="img" aria-label="Vídeo: Carna Lagoa"><video src="assets/videos/video1.mp4" muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></div><span class="pcap">Carna Lagoa</span></div>
+    <div class="pitem"><div class="thumb" role="img" aria-label="Vídeo: Real Time"><video src="assets/videos/video2.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></div><span class="pcap">Real Time</span></div>
+    <div class="pitem"><div class="thumb" role="img" aria-label="Vídeo: Réveillon Bom Começo"><video src="assets/videos/video3.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></div><span class="pcap">Réveillon Bom Começo</span></div>
   </div>
   <a class="more" href="https://drive.google.com/drive/folders/1-wV_LNUnHvH6Phr86Rme2fwrgXBkvtQQ" target="_blank" rel="noopener">Ver meu portfólio completo <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
 
@@ -357,6 +357,14 @@ document.querySelectorAll('.svc').forEach(function(c){
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   function play(v){ v.muted=true; var p=v.play(); if(p&&p.catch){ p.catch(function(){}); } }
   if(reduce){ vids.forEach(function(v){ v.removeAttribute('autoplay'); v.pause(); }); return; }
+  /* Carrega um vídeo por vez: só começa o próximo quando o anterior já pode tocar */
+  function loadNext(i){ var v=vids[i]; if(!v) return; var done=false;
+    function go(){ if(done) return; done=true; loadNext(i+1); }
+    v.preload='auto';
+    if(v.readyState===0 && v.paused && v.networkState===1){ v.load(); }
+    v.addEventListener('canplaythrough',go,{once:true}); setTimeout(go,8000); }
+  if(!reduce){ if(document.readyState==='complete') loadNext(0); else addEventListener('load',function(){ loadNext(0); }); }
+
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ play(e.target); } else { e.target.pause(); } }); },{threshold:.25});
     vids.forEach(function(v){ io.observe(v); });
@@ -436,15 +444,15 @@ document.querySelectorAll('.svc').forEach(function(c){
     busy=false;
     cs.forEach(function(c){
       var r=c.getBoundingClientRect(), sx=c.classList.contains('tr')||c.classList.contains('br')?-1:1, sy=c.classList.contains('bl')||c.classList.contains('br')?-1:1;
-      var x0=sx>0?r.left:r.right, y0=sy>0?r.top:r.bottom, hits=0, pts=[[1,1],[11,1],[21,1],[1,11],[1,21]];
+      var x0=sx>0?r.left:r.right, y0=sy>0?r.top:r.bottom, hits=0, pts=[[1,1],[16,1],[1,16]];
       pts.forEach(function(p){ if(red(document.elementFromPoint(x0+sx*p[0],y0+sy*p[1]))) hits++; });
-      if(hits>=2) c.style.setProperty('--c','#fff'); else c.style.removeProperty('--c');
+      if(hits>=1) c.style.setProperty('--c','#fff'); else c.style.removeProperty('--c');
     });
   }
-  function req(){ if(!busy){ busy=true; requestAnimationFrame(check); } }
+  function req(){ if(busy||document.hidden) return; busy=true; setTimeout(function(){ requestAnimationFrame(check); },120); }
   addEventListener('scroll',req,{passive:true}); addEventListener('resize',req);
   document.addEventListener('click',function(){ setTimeout(req,50); setTimeout(req,450); });
-  setInterval(req,400); req();
+  req();
 })();
 </script>
 </body>
