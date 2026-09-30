@@ -22,7 +22,8 @@
 <link rel="apple-touch-icon" href="assets/imagens/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap"></noscript>
 <script>window.rec={paused:false,q:[]};</script>
 <script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <style>
@@ -194,10 +195,8 @@ h1{ margin:0; font-size:40px; color:var(--wine); }
 /* Fundo com vida: grão de filme, vinheta, REC, cantos de câmera e faixa em movimento */
 .page{ position:relative; z-index:1; }
 .fx{ position:fixed; inset:0; pointer-events:none; z-index:0; }
-.fx-grain{ background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:160px 160px; opacity:.09; }
 .fx-vig{ background:radial-gradient(ellipse 90% 70% at 50% 25%, transparent 45%, rgba(165,4,11,.13) 100%); }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .fx-grain{ display:none; }
   :root:not([data-theme="light"]) .fx-vig{ background:radial-gradient(ellipse 90% 70% at 50% 25%, transparent 40%, rgba(0,0,0,.45) 100%); }
 }
 .rec-bar{ position:absolute; top:12px; left:30px; display:flex; align-items:center; gap:12px; padding:8px 14px; border-radius:999px; background:rgba(243,241,233,.92); border:1px solid var(--line); box-shadow:0 2px 10px rgba(110,2,7,.12); white-space:nowrap; font-family:'Space Grotesk',system-ui,sans-serif; font-weight:700; font-size:10px; line-height:1; letter-spacing:.18em; color:var(--wine); }
@@ -221,7 +220,10 @@ h1{ margin:0; font-size:40px; color:var(--wine); }
     linear-gradient(var(--c),var(--c)) bottom left/16px 2px no-repeat, linear-gradient(var(--c),var(--c)) bottom left/2px 16px no-repeat,
     linear-gradient(var(--c),var(--c)) bottom right/16px 2px no-repeat, linear-gradient(var(--c),var(--c)) bottom right/2px 16px no-repeat; }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .cam-frame{ --c:var(--pink); } }
-.marquee{ margin-top:32px; overflow:hidden; padding:7px 0; color:var(--wine); border-top:1px solid var(--line); border-bottom:1px solid var(--line); -webkit-mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent); mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent); }
+.marquee{ margin-top:32px; overflow:hidden; padding:7px 0; color:var(--wine); border-top:1px solid var(--line); border-bottom:1px solid var(--line); position:relative; }
+.marquee::before,.marquee::after{ content:""; position:absolute; top:-1px; bottom:-1px; width:22%; z-index:1; pointer-events:none; }
+.marquee::before{ left:0; background:linear-gradient(90deg,var(--bg),rgba(0,0,0,0)); }
+.marquee::after{ right:0; background:linear-gradient(270deg,var(--bg),rgba(0,0,0,0)); }
 .marquee-track{ display:flex; width:max-content; will-change:transform; animation:mq 80s linear infinite; }
 .mq-grp{ display:flex; flex:none; align-items:center; gap:18px; padding-right:18px; }
 .marquee.rev .marquee-track{ animation-direction:reverse; }
@@ -294,7 +296,6 @@ body{ padding-bottom:14px; }
  :root[data-theme="dark"] .more:focus-visible{ outline-color:var(--pink); } 
  :root[data-theme="dark"] .pcap{ color:var(--pink); } 
 
-  :root[data-theme="dark"] .fx-grain{ display:none; }
   :root[data-theme="dark"] .fx-vig{ background:radial-gradient(ellipse 90% 70% at 50% 25%, transparent 40%, rgba(0,0,0,.45) 100%); }
 
  :root[data-theme="dark"] .rec-bar{ color:var(--pink); background:rgba(43,5,7,.9); box-shadow:0 2px 12px rgba(0,0,0,.35); } 
@@ -374,28 +375,22 @@ body{ padding-bottom:14px; }
 .q-top i{ display:inline-block; width:7px; height:7px; margin-right:6px; border-radius:50%; background:#ff3b30; }
 @media (prefers-reduced-motion: no-preference){ .q-top i{ animation:blink 1.2s steps(2,start) infinite; } }
 .q-stage{ position:relative; margin:16px 0 14px; }
-.q-ret{ position:absolute; inset:-9px -8px; pointer-events:none; opacity:0; color:var(--cream);
+.q-ret{ position:absolute; inset:-9px -8px; pointer-events:none; opacity:1; color:var(--pink);
   background:
     linear-gradient(currentColor,currentColor) top left/14px 2px no-repeat, linear-gradient(currentColor,currentColor) top left/2px 14px no-repeat,
     linear-gradient(currentColor,currentColor) top right/14px 2px no-repeat, linear-gradient(currentColor,currentColor) top right/2px 14px no-repeat,
     linear-gradient(currentColor,currentColor) bottom left/14px 2px no-repeat, linear-gradient(currentColor,currentColor) bottom left/2px 14px no-repeat,
     linear-gradient(currentColor,currentColor) bottom right/14px 2px no-repeat, linear-gradient(currentColor,currentColor) bottom right/2px 14px no-repeat; }
-.quote.run .qt{ animation:qfo 3.4s ease-in-out both; }
-.quote.run .q-ret{ animation:qrt 3.4s ease-in-out both; }
-@keyframes qfo{ 0%{filter:blur(9px);opacity:.55} 30%{filter:blur(3px);opacity:.8} 46%{filter:blur(8px);opacity:.65} 66%{filter:blur(1.5px);opacity:.9} 78%{filter:blur(3px)} 100%{filter:blur(0);opacity:1} }
-@keyframes qrt{ 0%{opacity:0;transform:scale(1.18)} 10%{opacity:.7;transform:scale(1.14)} 34%{transform:scale(1.03);opacity:.8} 48%{transform:scale(1.1)} 70%{transform:scale(1);opacity:.9} 84%{transform:scale(.985);color:var(--cream)} 92%{color:var(--pink);transform:scale(1);opacity:1} 100%{color:var(--pink);opacity:1;transform:scale(1)} }
-:root.paused .quote .qt, :root.paused .quote .q-ret{ animation-play-state:paused !important; }
 :root.paused .q-top i{ animation:none !important; opacity:.35; }
 </style>
 </head>
 <body>
 <div class="vf" id="vf"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i><div class="rec-bar"><span aria-hidden="true"><i class="dot"></i>REC</span><span class="tc" id="tc" aria-hidden="true">00:00:00</span><button type="button" class="rec-btn" id="recBtn" aria-label="Pausar" aria-pressed="false"><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1.2"/><rect x="14" y="4" width="5" height="16" rx="1.2"/></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.7l-12-7.5A1 1 0 0 0 7 4.5z"/></svg></button></div><div class="theme-tg" role="group" aria-label="Tema"><button type="button" data-t="light" aria-label="Tema claro" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button><button type="button" data-t="dark" aria-label="Tema escuro" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a.6.6 0 0 0-.8-.7A9.5 9.5 0 1 0 21.2 15a.6.6 0 0 0-.7-.8z"/></svg></button></div></div>
 <div class="fx fx-vig" aria-hidden="true"></div>
-<div class="fx fx-grain" aria-hidden="true"></div>
 <main class="page">
 
   <section class="hero">
-    <div class="logo-slot"><span class="cam-frame" aria-hidden="true"></span><img src="assets/imagens/logo.png" alt="Logo Könige" width="132" height="132"></div>
+    <div class="logo-slot"><span class="cam-frame" aria-hidden="true"></span><img src="assets/imagens/logo.png" alt="Logo Könige" width="132" height="132" fetchpriority="high" decoding="async"></div>
     <h1 class="display">Könige</h1>
     <p class="tagline" id="tagline"><span class="tw-sr">Conecte pessoas, transforme momentos em memórias!</span><span class="tw" id="tw" aria-hidden="true"></span><noscript><b class="serif">Conecte pessoas,</b> transforme momentos em memórias!</noscript></p>
     <div class="socials">
@@ -470,7 +465,7 @@ body{ padding-bottom:14px; }
   <div class="about-card">
     <button type="button" class="about-close" id="closeAbout" aria-label="Fechar">×</button>
     <div class="about-row">
-      <div class="about-photo"><img src="assets/imagens/babi.jpg" alt="Bárbara Reis" onerror="this.style.display='none'"></div>
+      <div class="about-photo"><img src="assets/imagens/babi.jpg" alt="Bárbara Reis" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
       <div class="about-info">
         <h2 class="about-name display" id="aboutName">Bárbara Reis</h2>
         <p class="about-role">Videomaker mobile · Fundadora da Könige</p>
@@ -512,7 +507,7 @@ document.querySelectorAll('.svc').forEach(function(c){
   if(!reduce){ if(document.readyState==='complete') loadNext(0); else addEventListener('load',function(){ loadNext(0); }); }
 
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ play(e.target); } else { e.target.pause(); } }); },{threshold:.25});
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ play(e.target); } else { e.target.pause(); } }); },{threshold:.5});
     vids.forEach(function(v){ io.observe(v); });
   } else { vids.forEach(play); }
   document.addEventListener('visibilitychange',function(){ if(!document.hidden){ vids.forEach(function(v){ var r=v.getBoundingClientRect(); if(r.bottom>0&&r.top<innerHeight){ play(v); } }); } });
@@ -595,7 +590,7 @@ document.querySelectorAll('.svc').forEach(function(c){
       if(hits>=1) c.style.setProperty('--c','#fff'); else c.style.removeProperty('--c');
     });
   }
-  function req(){ if(busy||document.hidden) return; busy=true; setTimeout(function(){ requestAnimationFrame(check); },120); }
+  var tm; function req(){ if(document.hidden) return; clearTimeout(tm); tm=setTimeout(function(){ requestAnimationFrame(check); },180); }
   addEventListener('scroll',req,{passive:true}); addEventListener('resize',req);
   document.addEventListener('click',function(){ setTimeout(req,50); setTimeout(req,450); });
   req();
@@ -631,19 +626,6 @@ document.querySelectorAll('.svc').forEach(function(c){
       window.rec.q.splice(0).forEach(function(f){ f(); });
     }
   });
-})();
-</script>
-<script>
-/* Frase: dispara o foco automático quando o card entra na tela */
-(function(){
-  var qd=document.querySelector('.quote'); if(!qd||!('IntersectionObserver' in window)) return;
-  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var timer;
-  function go(){ if(window.rec&&window.rec.paused) return; qd.classList.remove('run'); void qd.offsetWidth; qd.classList.add('run'); }
-  new IntersectionObserver(function(es){ es.forEach(function(e){
-    clearInterval(timer);
-    if(e.isIntersecting){ go(); timer=setInterval(go,8000); } else { qd.classList.remove('run'); }
-  }); },{threshold:.6}).observe(qd);
 })();
 </script>
 </body>
